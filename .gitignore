@@ -1,0 +1,4 @@
+node_modules
+mongodata
+build
+coverage

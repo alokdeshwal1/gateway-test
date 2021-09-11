@@ -1,0 +1,11 @@
+.dockerignore
+node_modules
+npm-debug.log
+src/db/Dockerfile
+src/db/docker-mongo-dev.env
+docker-env-dev.env
+docker-compose.yaml
+Dockerfile
+.git
+.gitignore
+.npmrc

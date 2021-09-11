@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+  node-server:
+    build:
+      context: './'
+    restart: on-failure:3
+    env_file: 
+      ./docker-env-dev.env
+    ports:
+      - 3000:3000
+    volumes:
+        - ./:/usr/src/app
+    stdin_open: true
+    tty: true
+    container_name: "node-server"
+    networks:
+      - central-backend
+    depends_on:
+      - mongo
+  mongo:
+    build: ./src/db
+    restart: on-failure:3
+    stdin_open: true
+    volumes:
+      - ./mongodata:/data/db
+    tty: true
+    container_name: mongo
+    env_file: 
+      ./src/db/docker-mongo-dev.env
+    networks:
+      - central-backend
+    ports:
+      - '27018:27017'
+
+networks:
+    central-backend:
+        driver: bridge
