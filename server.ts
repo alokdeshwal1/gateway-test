@@ -10,10 +10,11 @@ const API_FREQUENCY_IN_MS: number | undefined = ConfigUtilities.API_FREQUENCY_IN
 // bootstrap the app
 (async () => {
     try {
-        await new App(mongoDriver)
+        await new App(mongoDriver).connectToMongoDB()
+        console.log('Node.js Server is running');
         // Login into server through REST API
         await horseEventService.login()
-        await new Promise((resolve, reject) => {
+        await new Promise((resolve:any, reject:any) => {
             const id = setInterval(async () => {
                 try {
                     console.log('***************************Log Separator*****************************')
@@ -38,14 +39,14 @@ const API_FREQUENCY_IN_MS: number | undefined = ConfigUtilities.API_FREQUENCY_IN
         process.exit()
     }
 })()
-process.on('uncaughtException', (error, origin) => {
+process.on('uncaughtException', (error:any, origin:any) => {
     console.log('----- Uncaught exception -----')
     console.error(error)  
     console.log('----- Exception origin -----')
     console.log(origin)
 })
 
-process.on('unhandledRejection', (reason, promise) => {
+process.on('unhandledRejection', (reason:any, promise:any) => {
     console.log('----- Unhandled Rejection at -----')
     console.log(promise)
     console.log('----- Reason -----')

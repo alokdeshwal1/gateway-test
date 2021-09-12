@@ -58,7 +58,6 @@ import { ConfigUtilities, SecretUtilites } from '../utilities'
    */
   async connectDB(): Promise<void> {
     // let mongoDBURLString = `mongodb://root:scraper123@localhost:27018/horse?authSource=admin`;
-    await (async () => {
       try {
         const mongoDBURLString = this.getMongoURI()
         console.log(`MongoDB Connection string: ${mongoDBURLString}`);
@@ -71,7 +70,6 @@ import { ConfigUtilities, SecretUtilites } from '../utilities'
         console.error("Database connection error", err)
         process.exit();
       }
-    })()
   }
 }
 
